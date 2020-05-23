@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+
+body {
+  background-color:  #f2f4f4;
+}
+
+h2 {
+  color: #1a5276;
+  background-color: #FC9804;
+  text-align: center;
+}
+
+table {
+  margin-left: 0px;
+  margin-right: auto;
+}
+
+label {  display: block; width: 100px; }
+
+.mybutton {
+  font-size: 100%;
+  color: #1a5276;
+  background-color:  #f5cba7;
+}
+
+#Content {
+  position: relative;
+  left: 50px;
+  right: 50px;
+  width: 500px;
+  font-size: 120%;
+}
