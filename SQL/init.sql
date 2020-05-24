@@ -9,7 +9,7 @@ CREATE TABLE adresse (
     strasse VARCHAR(50) NOT NULL,
     zusatz VARCHAR(25),
     plz VARCHAR(5) NOT NULL,
-    stadt VARCHAR(50)
+    stadt VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE verlag(
@@ -35,7 +35,7 @@ CREATE TABLE autor (
 
 CREATE TABLE buchbestand(
     isbn VARCHAR(13) NOT NULL PRIMARY KEY,
-    bestand DECIMAL(4, 0) CHECK(bestand >= 0),
+    bestand DECIMAL(4, 0) NOT NULL CHECK(bestand >= 0),
     FOREIGN KEY(isbn) REFERENCES buch(isbn)
     ON DELETE CASCADE
 );
