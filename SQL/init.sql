@@ -86,6 +86,7 @@ CREATE TABLE buchpreis(
 CREATE TABLE kundenkauf(
     kundenNr VARCHAR(10) NOT NULL PRIMARY KEY,
     isbn VARCHAR(13) NOT NULL,
+    datum TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     menge INT NOT NULL CHECK(menge >= 0),
     FOREIGN KEY(kundenNr) REFERENCES kunde(kundenNr) ON DELETE CASCADE,
     FOREIGN KEY(isbn) REFERENCES buchpreis(isbn)
