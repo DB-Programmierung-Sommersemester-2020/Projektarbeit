@@ -14,7 +14,7 @@ import bookshop.repositories.services.CRUDRepositoryService;
 
 public abstract class CRUDRepository<T, ID extends Serializable> implements CRUDRepositoryService<T, ID> {
 
-	private final String persistenceUnit = "UserNotes";
+	private final String persistenceUnit = "Bookshop";
 	private Class<T> entityClass;
 
 	@SuppressWarnings("unchecked")
