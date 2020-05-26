@@ -33,6 +33,13 @@ CREATE TABLE autor (
     nachname VARCHAR(25) NOT NULL
 );
 
+CREATE TABLE buchautor(
+    isbn VARCHAR(13) NOT NULL,
+    autorId INT NOT NULL,
+    FOREIGN KEY(isbn) REFERENCES buch(isbn),
+    FOREIGN KEY(autorId) REFERENCES autor(id)
+);
+
 CREATE TABLE buchbestand(
     isbn VARCHAR(13) NOT NULL PRIMARY KEY,
     bestand DECIMAL(4, 0) NOT NULL CHECK(bestand >= 0),
