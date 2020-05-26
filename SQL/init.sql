@@ -91,6 +91,12 @@ CREATE TABLE kundenkauf(
     FOREIGN KEY(isbn) REFERENCES buchpreis(isbn)
 );
 
+CREATE TABLE kundenadresse(
+    kundenNr VARCHAR(10) NOT NULL PRIMARY KEY,
+    adressId INT NOT NULL,
+    FOREIGN KEY(kundenNr) REFERENCES kunde(kundenNr),
+    FOREIGN KEY(adressId) REFERENCES adresse(id)
+);
 DELIMITER $$ 
 
 CREATE TRIGGER sort_kunde
