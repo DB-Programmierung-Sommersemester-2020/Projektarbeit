@@ -4,6 +4,7 @@ import java.util.Set;
 
 import bookshop.entities.Address;
 import bookshop.entities.Author;
+import bookshop.entities.Book;
 import bookshop.entities.Customer;
 import bookshop.entities.Publisher;
 import bookshop.repositories.implementations.AddressRepository;
@@ -109,5 +110,25 @@ public class RepositoriesFacade {
 	
 	public boolean deleteCustomer(Customer customer) {
 		return repositories.getCustomerRepository().delete(customer);
+	}
+	
+	public Book getBookById(String id) {
+		return repositories.getBookRepository().getByKey(id);
+	}
+	
+	public Set<Book> getAllBooks(){
+		return repositories.getBookRepository().getAll();
+	}
+	
+	public boolean createBook(Book book) {
+		return repositories.getBookRepository().create(book);
+	}
+	
+	public boolean updateBook(Book book) {
+		return repositories.getBookRepository().update(book);
+	}
+	
+	public boolean delteBook(Book book) {
+		return repositories.getBookRepository().delete(book);
 	}
 }
