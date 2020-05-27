@@ -12,7 +12,7 @@
 		<class>bookshop.entities.Author</class>
 		<class>bookshop.entities.Book</class>
 		<class>bookshop.entities.BookAmount</class>
-		<class>bookshop.entities.BookPreis</class>
+		<class>bookshop.entities.BookPrise</class>
 		<class>bookshop.entities.BusinessCustomer</class>
 		<class>bookshop.entities.Customer</class>
 		<class>bookshop.entities.CustomerPurchase</class>
