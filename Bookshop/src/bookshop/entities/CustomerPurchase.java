@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -14,10 +15,10 @@ public class CustomerPurchase {
 
 	@Id
 	@ManyToOne
-	@Column(name = "kundenNr")
+	@JoinColumn(name = "kundenNr")
 	private Customer customer;
 	
-	@Column(name="isbn")
+	@JoinColumn(name="isbn")
 	private Book book;
 	
 	@Column(name="menge")

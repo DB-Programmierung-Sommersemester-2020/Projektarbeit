@@ -1,5 +1,6 @@
 package bookshop.entities;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Address {
 	@Column(name="stadt")
 	private String city;
 	
-	@OneToOne(mappedBy = "adresse")
+	@OneToOne(mappedBy = "address")
 	Publisher publisher;
 	
 	public Address() {

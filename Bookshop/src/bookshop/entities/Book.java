@@ -4,12 +4,14 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,7 +26,8 @@ public class Book {
 	@Column(name = "titel")
 	private String title;
 
-	@Column(name = "verlag")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="verlag")
 	private Publisher publisher;
 
 	@Column(name = "bild")
@@ -33,10 +36,10 @@ public class Book {
 	@Column(name = "bild_pfad")
 	private String pic_path;
 
-	@OneToOne(mappedBy = "book")
+	@OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
 	private BookAmount BookAmount;
 	
-	@OneToOne(mappedBy = "book")
+	@OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
 	private BookPrise BookPrise;
 	
 	@ManyToMany
@@ -135,6 +138,30 @@ public class Book {
 
 	public String getId() {
 		return isbn;
+	}
+
+	public Publisher getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(Publisher publisher) {
+		this.publisher = publisher;
+	}
+
+	public BookAmount getBookAmount() {
+		return BookAmount;
+	}
+
+	public void setBookAmount(BookAmount bookAmount) {
+		BookAmount = bookAmount;
+	}
+
+	public BookPrise getBookPrise() {
+		return BookPrise;
+	}
+
+	public void setBookPrise(BookPrise bookPrise) {
+		BookPrise = bookPrise;
 	}
 
 	@Override

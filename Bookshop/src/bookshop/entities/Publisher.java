@@ -1,10 +1,17 @@
 package bookshop.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="verlag")
@@ -12,9 +19,16 @@ public class Publisher {
 	@Id
 	private String name;
 	
-	@OneToOne
-	@JoinColumn(name="adressId", referencedColumnName = "id")
+	@OneToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="adressId")
 	private Address address;
+	
+	@OneToMany(mappedBy = "publisher")
+	private Set<Book> books = new HashSet<Book>();
+	
+	public Publisher() {
+		
+	}
 	
 	public Publisher(String name, Address address) {
 		super();
@@ -34,6 +48,14 @@ public class Publisher {
 		this.address = address;
 	}
 	
+	public Set<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(Set<Book> books) {
+		this.books = books;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -1,21 +1,29 @@
 package bookshop.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="buchpreis")
 public class BookPrise {
 	
 	@Id
 	@OneToOne
-	@MapsId
-	@Column(name="isbn")
+	@JoinColumn(name="isbn")
 	private Book book;
 	
 	@Column(name="preis")
 	private Double prise;
 	
+	public BookPrise() {
+		
+	}
 	public BookPrise(Book book, Double prise) {
 		super();
 		this.book = book;
