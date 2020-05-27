@@ -3,6 +3,7 @@ package bookshop.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,7 +29,7 @@ public class Author {
 	private String lastName;
 	
 	//@ManyToMany(mappedBy = "books")
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name = "buchautor", 
 	joinColumns = @JoinColumn(name = "isbn"), 
 	inverseJoinColumns = @JoinColumn(name="autorId"))

@@ -42,7 +42,7 @@ public class Book {
 	@OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
 	private BookPrise BookPrise;
 	
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name = "buchautor", 
 	joinColumns = @JoinColumn(name = "isbn"), 
 	inverseJoinColumns = @JoinColumn(name="autorId"))
