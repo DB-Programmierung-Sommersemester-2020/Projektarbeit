@@ -78,7 +78,7 @@ CREATE TABLE geschaeftskunde(
 
 CREATE TABLE buchpreis(
     isbn VARCHAR(13) NOT NULL PRIMARY KEY,
-    preis DECIMAL(19, 4) NOT NULL CHECK(preis >= 0),
+    preis DECIMAL(19, 2) NOT NULL CHECK(preis >= 0),
     FOREIGN KEY(isbn) REFERENCES buch(isbn)
     ON DELETE CASCADE
 );
