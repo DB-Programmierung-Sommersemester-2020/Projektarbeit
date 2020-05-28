@@ -34,7 +34,6 @@ public class SuchServlet extends HttpServlet
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
    {
       String autorname = request.getParameter("autorname");
-      
       Collection<Buch>  buecher = this.facade.findBuecherFromAutor(autorname);
       request.setAttribute("buecher", buecher );
       

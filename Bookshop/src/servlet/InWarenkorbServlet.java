@@ -46,7 +46,7 @@ public class InWarenkorbServlet extends HttpServlet
 
       if (buchid != null)
       {
-         Buch buch = this.facade.findBuchById(Integer.parseInt(buchid));
+         Buch buch = this.facade.findBuchById(Long.parseLong(buchid));
          wk.addBuch(buch);
       }
 

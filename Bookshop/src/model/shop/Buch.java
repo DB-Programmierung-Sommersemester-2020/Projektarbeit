@@ -9,14 +9,14 @@ import java.util.List;
 public class Buch implements Serializable
 {
    private static final long serialVersionUID = 6690657110776756579L;
-   private int id;
+   private long id;
    private String titel;
    private String verlag;
    private double preis;
    
    private List<Autor> autoren = new ArrayList<Autor>();
    
-   public Buch(int id, String titel, String verlag, double preis)
+   public Buch(long id, String titel, String verlag, double preis)
    {
       super();
       this.id = id;
@@ -53,7 +53,7 @@ public class Buch implements Serializable
       return strBuild.toString();
    }
    
-   public int getId()
+   public long getId()
    {
       return this.id;
    }
