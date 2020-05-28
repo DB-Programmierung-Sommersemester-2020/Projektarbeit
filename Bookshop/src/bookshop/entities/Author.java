@@ -31,9 +31,9 @@ public class Author {
 	//@ManyToMany(mappedBy = "books")
 	@ManyToMany(cascade=CascadeType.ALL)
 	@JoinTable(name = "buchautor", 
-	joinColumns = @JoinColumn(name = "isbn"), 
-	inverseJoinColumns = @JoinColumn(name="autorId"))
-	Set<Book> books = new HashSet<Book>();
+	joinColumns = @JoinColumn(name = "autorId"), 
+	inverseJoinColumns = @JoinColumn(name="isbn"))
+	private Set<Book> books = new HashSet<Book>();
 
 	public Author() {
 		super();

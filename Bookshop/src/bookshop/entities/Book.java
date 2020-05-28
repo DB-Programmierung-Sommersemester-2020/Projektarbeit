@@ -46,7 +46,7 @@ public class Book {
 	@JoinTable(name = "buchautor", 
 	joinColumns = @JoinColumn(name = "isbn"), 
 	inverseJoinColumns = @JoinColumn(name="autorId"))
-	Set<Author> authors = new HashSet<Author>();
+	private Set<Author> authors = new HashSet<Author>();
 
 	public Book() {
 		super();
@@ -102,10 +102,6 @@ public class Book {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public Publisher getVerlag() {
-		return publisher;
 	}
 
 	public void setVerlag(Publisher verlag) {
