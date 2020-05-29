@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import bookshop.entities.Address;
 import bookshop.entities.Author;
@@ -31,15 +33,25 @@ public class ModelFacade {
 
 	private List<Autor> autorenContainer = new ArrayList<Autor>();
 	private List<Buch> buchContainer = new ArrayList<Buch>();
+	private List<CustomerView> customerContainer = new ArrayList<CustomerView>();
 	private RepositoriesFacade facade = RepositoriesFacade.getInstance();
 
 	private ModelFacade() {
 		super();
 		// this.initModel();
-		this.mapEmtitiesModel();
+		this.mapEmtitiesAndViewModels();
 
 	}
 
+	public Collection<CustomerView> getAllCustomers(){
+		return this.customerContainer;
+	}
+	
+	public CustomerView getCustomerById(String id) {
+		Optional<CustomerView> optionalCustomer = customerContainer.stream().filter(c->c.getCustomerId().equals(id)).findFirst();
+		return optionalCustomer.isPresent() ? optionalCustomer.get() : null;
+	}
+	
 	// Liefert alle Bücher eines Autors.
 	// Als Wildcard wird * akzeptiert
 	public Collection<Buch> findBuecherFromAutor(String name) {
@@ -192,7 +204,7 @@ public class ModelFacade {
 		tilkov.addBuch(http);
 	}
 
-	private void mapEmtitiesModel() {
+	private void mapEmtitiesAndViewModels() {
 		// Autor starke = new Autor(1, "Gernot", "Starke");
 		// Buch eSA = new Buch(1, "Effektive Software-Architekturen", "Hanser", 39.95);
 		// eSA.addAutor(starke);
@@ -250,6 +262,16 @@ public class ModelFacade {
 				buch.addAutor(autor);
 			}
 			this.autorenContainer.add(autor);
+		}
+		
+		Set<bookshop.entities.Customer> customers = new HashSet<bookshop.entities.Customer>();
+		customers = facade.getAllCustomers();
+		for(bookshop.entities.Customer customer : customers) {
+			CustomerView customerView = new CustomerView(customer.getId(), customer.getName(), customer.getEmail());
+			customerView.setPassword(customer.getPassword());
+			customerView.setPurchases(customer.getPurchases());
+			
+			this.customerContainer.add(customerView);
 		}
 	}
 }

@@ -1,11 +1,16 @@
 package bookshop.entities;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -32,8 +37,20 @@ public class Address {
 	@OneToOne(mappedBy = "address")
 	Publisher publisher;
 	
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinTable(name = "kundenadresse", 
+	joinColumns = @JoinColumn(name = "adressId"), 
+	inverseJoinColumns = @JoinColumn(name="kundenNr"))
+	private Customer customer;
+	
 	public Address() {
 		super();
+	}
+	public Address(String street,String zipCode, String city) {
+		super();
+		this.street = street;
+		this.zipCode = zipCode;
+		this.city = city;
 	}
 
 	public Address(String street, String suffix, String zipCode, String city) {
@@ -97,6 +114,14 @@ public class Address {
 
 	public void setPublisher(Publisher publisher) {
 		this.publisher = publisher;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public int getId() {

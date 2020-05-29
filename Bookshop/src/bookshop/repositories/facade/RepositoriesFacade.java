@@ -6,11 +6,13 @@ import bookshop.entities.Address;
 import bookshop.entities.Author;
 import bookshop.entities.Book;
 import bookshop.entities.Customer;
+import bookshop.entities.Password;
 import bookshop.entities.Publisher;
 import bookshop.repositories.implementations.AddressRepository;
 import bookshop.repositories.implementations.AuthorRepository;
 import bookshop.repositories.implementations.BookRepository;
 import bookshop.repositories.implementations.CustomerRepository;
+import bookshop.repositories.implementations.PasswordRepository;
 import bookshop.repositories.implementations.PublisherRepository;
 import bookshop.repositories.implementations.RepositoriesContainer;
 import bookshop.repositories.services.RepositoriesContainerService;
@@ -25,7 +27,8 @@ public class RepositoriesFacade {
 				new BookRepository(), 
 				new AddressRepository(), 
 				new PublisherRepository(), 
-				new CustomerRepository());
+				new CustomerRepository(),
+				new PasswordRepository());
 	}
 	
 	public static RepositoriesFacade getInstance() {
@@ -130,5 +133,25 @@ public class RepositoriesFacade {
 	
 	public boolean delteBook(Book book) {
 		return repositories.getBookRepository().delete(book);
+	}
+	
+	public Password getPasswordById(String id) {
+		return repositories.getPasswordRepository().getByKey(id);
+	}
+	
+	public Set<Password> getAllPasswords(){
+		return repositories.getPasswordRepository().getAll();
+	}
+	
+	public boolean createPassword(Password password) {
+		return repositories.getPasswordRepository().create(password);
+	}
+	
+	public boolean updatePassword(Password password) {
+		return repositories.getPasswordRepository().update(password);
+	}
+	
+	public boolean deletePassword(Password password) {
+		return repositories.getPasswordRepository().delete(password);
 	}
 }

@@ -18,6 +18,7 @@
 		<class>bookshop.entities.CustomerPurchase</class>
 		<class>bookshop.entities.PrivateCustomer</class>
 		<class>bookshop.entities.Publisher</class>
+		<class>bookshop.entities.Password</class>
 		<properties>
 			<!-- Uncomment to get log sql log output -->
 			<!-- <property name="eclipselink.logging.level" value="OFF" /> -->

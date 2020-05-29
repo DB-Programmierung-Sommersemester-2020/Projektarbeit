@@ -4,6 +4,7 @@ import bookshop.entities.Address;
 import bookshop.entities.Author;
 import bookshop.entities.Book;
 import bookshop.entities.Customer;
+import bookshop.entities.Password;
 import bookshop.entities.Publisher;
 import bookshop.repositories.implementations.CRUDRepository;
 
@@ -18,4 +19,5 @@ public interface RepositoriesContainerService {
 
 	public CRUDRepository<Customer, String> getCustomerRepository();
 
+	public CRUDRepository<Password, String> getPasswordRepository();
 }

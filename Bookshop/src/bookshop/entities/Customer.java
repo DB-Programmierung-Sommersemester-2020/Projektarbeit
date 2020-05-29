@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +26,9 @@ public class Customer {
 	
 	@Column(name="email")
 	private String email;
+	
+	@OneToOne(mappedBy="customerId", cascade=CascadeType.ALL)
+	private Password password;
 
 	@OneToMany(mappedBy = "customer")
 	private Set<CustomerPurchase> purchases = new HashSet<CustomerPurchase>();
@@ -38,10 +42,11 @@ public class Customer {
 	public Customer() {
 		
 	}
-	public Customer(String id, String name) {
+	public Customer(String id, String name, String email) {
 		super();
 		this.customerId = id;
 		this.name = name;
+		this.email = email;
 	}
 
 	public String getName() {
@@ -67,6 +72,22 @@ public class Customer {
 	
 	public void setAdresses(Set<Address> adresses) {
 		this.adresses = adresses;
+	}
+	
+	public Password getPassword() {
+		return password;
+	}
+	
+	public void setPassword(Password password) {
+		this.password = password;
+	}
+	
+	public String getEmail() {	
+		return this.email;
+	}
+	
+	public void setEmail(String email) {
+		this.email=email;
 	}
 	
 	public String getId() {
@@ -108,6 +129,7 @@ public class Customer {
 	public String toString() {
 		return "Customer [id=" + customerId + ", name=" + name + "]";
 	}
+	
 	
 	
 }
