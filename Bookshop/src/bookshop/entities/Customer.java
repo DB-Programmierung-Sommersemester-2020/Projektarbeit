@@ -3,9 +3,12 @@ package bookshop.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,9 +22,18 @@ public class Customer {
 	
 	@Column(name="name")
 	private String name;
+	
+	@Column(name="email")
+	private String email;
 
 	@OneToMany(mappedBy = "customer")
 	private Set<CustomerPurchase> purchases = new HashSet<CustomerPurchase>();
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name = "kundenadresse", 
+	joinColumns = @JoinColumn(name = "kundenNr"), 
+	inverseJoinColumns = @JoinColumn(name="adressId"))
+	private Set<Address> adresses = new HashSet<Address>();
 	
 	public Customer() {
 		
@@ -43,6 +55,18 @@ public class Customer {
 	
 	public Set<CustomerPurchase> getPurchases() {
 		return purchases;
+	}
+	
+	public void setPurchases(Set<CustomerPurchase> purchases) {
+		this.purchases = purchases;
+	}
+	
+	public Set<Address> getAdresses() {
+		return adresses;
+	}
+	
+	public void setAdresses(Set<Address> adresses) {
+		this.adresses = adresses;
 	}
 	
 	public String getId() {

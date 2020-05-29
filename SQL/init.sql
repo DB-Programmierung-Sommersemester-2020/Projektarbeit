@@ -58,7 +58,8 @@ CREATE TABLE buchbestand(
 
 CREATE TABLE kunde(
     kundenNr VARCHAR(10) NOT NULL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE privatkunde(
