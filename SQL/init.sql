@@ -98,6 +98,13 @@ CREATE TABLE kundenadresse(
     FOREIGN KEY(kundenNr) REFERENCES kunde(kundenNr),
     FOREIGN KEY(adressId) REFERENCES adresse(id)
 );
+
+CREATE TABLE kundenpassword(
+    kundenNr VARCAR(10) NOT NULL PRIMARY KEY,
+    pwdhash BLOB NOT NULL,
+    salt BLOB NOT NULL,
+    FOREIGN KEY(kundenNr) REFERENCES kunde(kundenNr)
+);
 DELIMITER $$ 
 
 CREATE TRIGGER sort_kunde
