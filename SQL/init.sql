@@ -100,11 +100,12 @@ CREATE TABLE kundenadresse(
 );
 
 CREATE TABLE kundenpassword(
-    kundenNr VARCAR(10) NOT NULL PRIMARY KEY,
+    kundenNr VARCHAR(10) NOT NULL PRIMARY KEY,
     pwdhash BLOB NOT NULL,
     salt BLOB NOT NULL,
     FOREIGN KEY(kundenNr) REFERENCES kunde(kundenNr)
 );
+
 DELIMITER $$ 
 
 CREATE TRIGGER sort_kunde
