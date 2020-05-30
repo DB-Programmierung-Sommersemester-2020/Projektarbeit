@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/error_page.css">
-<title>Insert title here</title>
+<title>Fehler</title>
 </head>
 <body>
 <div class="site">
