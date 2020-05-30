@@ -74,6 +74,19 @@ public class CustomerController {
 		}
 		return compare;
 	}
+	
+	public boolean checkPassword(CustomerView customer, String passwd) {
+		byte[] pwd = customer.getPassword().getPwdHash();
+		byte[] salt = customer.getPassword().getSalt();
+		byte[] pwdToTest = generatePassword(passwd, salt);
+		boolean compare = true;
+		if (pwd.length != pwdToTest.length)
+			return false;
+		for (int i = 0; i < pwd.length; i++) {
+			compare &= (pwd[i] == pwdToTest[i]);
+		}
+		return compare;
+	}
 
 	public Optional<CustomerView> lookupUser(String username) {
 		return viewModelFacade.getAllCustomers().stream().filter(c->c.getName().equals(username)).findFirst();
@@ -89,9 +102,9 @@ public class CustomerController {
 			Password pwd = new Password(customer,pwdHash,salt);
 			customer.setPassword(pwd);
 			
-			
 			return repositoriesFacade.createCustomer(customer);
 		}
 	}
+	
 }
 
