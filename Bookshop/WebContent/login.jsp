@@ -8,7 +8,7 @@
 <body>
   <div id="Content">
     <h2>Login</h2>
-    <form action="kaufinfo">
+    <form action="login" method="GET">
       <fieldset>
         <legend>Logindaten</legend>
         <div>
