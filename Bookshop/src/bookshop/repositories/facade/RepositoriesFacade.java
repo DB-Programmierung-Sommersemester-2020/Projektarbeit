@@ -28,7 +28,8 @@ public class RepositoriesFacade {
 				new AddressRepository(), 
 				new PublisherRepository(), 
 				new CustomerRepository(),
-				new PasswordRepository());
+				new PasswordRepository()
+				);
 	}
 	
 	public static RepositoriesFacade getInstance() {
@@ -154,4 +155,5 @@ public class RepositoriesFacade {
 	public boolean deletePassword(Password password) {
 		return repositories.getPasswordRepository().delete(password);
 	}
+	
 }

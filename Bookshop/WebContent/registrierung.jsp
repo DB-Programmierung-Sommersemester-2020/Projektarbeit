@@ -41,7 +41,7 @@
     <td><input type="radio" name="kind" value="Geschaeftskunde">Geschaeftskunde</td> 
   </tr>
   <tr>
-    <td> &nbsp; </td> <td><input type="submit" class="mybutton" Registrieren"/></td> 
+    <td> &nbsp; </td> <td><input type="submit" class="mybutton" value="Registrieren"/></td> 
   </tr>
  
   </table>

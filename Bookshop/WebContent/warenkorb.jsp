@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/hs-kl-style.css">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<title>BÃ¼chersuche</title>
+<title>Büchersuche</title>
 </head>
 <body>
   <div id="Content">
     <h2>Ihr Warenkorb</h2>
 
-    <form action="login.html">
+    <form action="login.jsp">
       <table border="1">
         <c:forEach items="${warenkorb.inhalt}" var="b">
           <tr>

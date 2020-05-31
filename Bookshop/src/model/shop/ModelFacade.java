@@ -6,12 +6,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-import bookshop.entities.Address;
 import bookshop.entities.Author;
 import bookshop.entities.Book;
 import bookshop.entities.Publisher;
+import bookshop.entities.Address;
+
 import bookshop.repositories.facade.RepositoriesFacade;
 
 //import sun.jvm.hotspot.debugger.AddressException;
@@ -44,10 +44,12 @@ public class ModelFacade {
 	}
 
 	public Collection<CustomerView> getAllCustomers(){
+		mapCustomers();
 		return this.customerContainer;
 	}
 	
 	public CustomerView getCustomerById(String id) {
+		mapCustomers();
 		Optional<CustomerView> optionalCustomer = customerContainer.stream().filter(c->c.getCustomerId().equals(id)).findFirst();
 		return optionalCustomer.isPresent() ? optionalCustomer.get() : null;
 	}
@@ -55,6 +57,8 @@ public class ModelFacade {
 	// Liefert alle Bücher eines Autors.
 	// Als Wildcard wird * akzeptiert
 	public Collection<Buch> findBuecherFromAutor(String name) {
+		mapBooks();
+		mapAuthors();
 		Set<Buch> result = new HashSet<Buch>();
 
 		String[] names = name.split("\\*");
@@ -78,6 +82,7 @@ public class ModelFacade {
 
 	// Liefert ein Buch mit der geforderten ID
 	public Buch findBuchById(long buchId) {
+		mapBooks();
 		Buch result = null;
 
 		for (Buch b : this.buchContainer) {
@@ -91,10 +96,12 @@ public class ModelFacade {
 	}
 
 	public Collection<Buch> getAlleBuecher() {
+		mapBooks();
 		return new ArrayList<Buch>(this.buchContainer);
 	}
 
 	public Collection<Autor> getAlleAutoren() {
+		mapAuthors();
 		return new ArrayList<Autor>(this.autorenContainer);
 	}
 
@@ -231,6 +238,53 @@ public class ModelFacade {
 		martin.getBooks().add(aSD);
 		facade.createAuthor(martin);
 */
+		mapBooks();
+		mapAuthors();
+		mapCustomers();
+	}
+
+	private void mapCustomers() {
+		Set<bookshop.entities.Customer> customers = new HashSet<bookshop.entities.Customer>();
+		customers = facade.getAllCustomers();
+		for(bookshop.entities.Customer customer : customers) {
+			CustomerView customerView = new CustomerView(customer.getId(), customer.getName(), customer.getEmail());
+			customerView.setPassword(customer.getPassword());
+			Collection<Book> customerBooks = new HashSet<Book>();
+			customerBooks = customer.getBooks();
+			for(Book book : customerBooks) {
+				Buch buch = new Buch(
+						Long.parseLong(book.getId()),
+						book.getTitle(),
+						book.getPublisher().getName(),
+						44); //book.getBookAmount().getAmount()
+				customerView.addBuch(buch);
+			}
+			
+			this.customerContainer.add(customerView);
+		}
+	}
+
+	private void mapAuthors() {
+		Set<Author> authors = new HashSet<Author>();
+		authors = facade.getAllAuthors();
+		for (Author author : authors) {
+			Autor autor = new Autor(author.getId(), author.getFirstName(), author.getLastName());
+			Set<Book> bookss = new HashSet<Book>();
+			bookss= author.getBooks();
+			for(Book book : bookss) {
+				Buch buch = new Buch(
+						Long.parseLong(book.getId()),
+						book.getTitle(),
+						book.getPublisher().getName(),
+						43); //Default booksamount //book.getBookAmount().getAmount()
+				autor.addBuch(buch);
+				buch.addAutor(autor);
+			}
+			this.autorenContainer.add(autor);
+		}
+	}
+
+	private void mapBooks() {
 		Set<Book> books = new HashSet<Book>();
 		books= facade.getAllBooks();
 		for (Book book : books) {
@@ -244,34 +298,6 @@ public class ModelFacade {
 				autor.addBuch(buch);
 			}
 			this.buchContainer.add(buch);
-		}
-
-		Set<Author> authors = new HashSet<Author>();
-		authors = facade.getAllAuthors();
-		for (Author author : authors) {
-			Autor autor = new Autor(author.getId(), author.getFirstName(), author.getLastName());
-			Set<Book> bookss = new HashSet<Book>();
-			bookss= author.getBooks();
-			for(Book book : bookss) {
-				Buch buch = new Buch(
-						Long.parseLong(book.getId()),
-						book.getTitle(),
-						book.getPublisher().getName(),
-						40);
-				autor.addBuch(buch);
-				buch.addAutor(autor);
-			}
-			this.autorenContainer.add(autor);
-		}
-		
-		Set<bookshop.entities.Customer> customers = new HashSet<bookshop.entities.Customer>();
-		customers = facade.getAllCustomers();
-		for(bookshop.entities.Customer customer : customers) {
-			CustomerView customerView = new CustomerView(customer.getId(), customer.getName(), customer.getEmail());
-			customerView.setPassword(customer.getPassword());
-			customerView.setPurchases(customer.getPurchases());
-			
-			this.customerContainer.add(customerView);
 		}
 	}
 }

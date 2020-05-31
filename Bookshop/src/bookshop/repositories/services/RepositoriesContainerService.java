@@ -20,4 +20,5 @@ public interface RepositoriesContainerService {
 	public CRUDRepository<Customer, String> getCustomerRepository();
 
 	public CRUDRepository<Password, String> getPasswordRepository();
+
 }

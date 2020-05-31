@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="css/hs-kl-style.css">
-<title>BÃ¼chersuche</title>
+<title>Büchersuche</title>
 </head>
 <body>
   <div id="Content">

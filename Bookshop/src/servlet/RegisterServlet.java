@@ -6,13 +6,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bookshop.controllers.CustomerController;
 import bookshop.entities.Address;
 import bookshop.entities.Customer;
 import bookshop.helpers.UserInputCheckHelper;
-import bookshop.repositories.facade.RepositoriesFacade;
-import model.shop.ModelFacade;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -40,34 +39,54 @@ public class RegisterServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("passwd");
 		String kindOfCustomer = request.getParameter("kind");
-		String message="";
-		
-		if (!UserInputCheckHelper.attributesOrAttributeEmpty(
-				lastName, firstName, street, zipCode, city, email, pwd,kindOfCustomer)) {
+		String message = "";
+
+		if (!UserInputCheckHelper.attributesOrAttributeEmpty(lastName, firstName, street, zipCode, city, email, pwd,
+				kindOfCustomer)) {
 			String generatedId = "";
-			int randomId = (int) (Math.random() * (10000 - 1)) + 1;
-
-			if (kindOfCustomer.equals("Privatkunde")) {
-				generatedId = "PRV" + randomId;
-			} else {
-				generatedId = "GEK" + randomId;
-			}
-
 			String name = firstName.trim() + " " + lastName.trim();
-			Customer customer = new Customer(generatedId, name, email);
-			Address address = new Address(street, zipCode, city);
-			customer.getAdresses().add(address);
+			boolean userExists = customerController.lookupUser(name).isPresent();
+			
+			if(userExists) {
+				message="Benutzer "+name+" bereits registriert";
+				request.setAttribute("message", message);
+				getServletContext().getRequestDispatcher("/errorPage.jsp").forward(request, response);
+			}
+			else
+			{
+				int randomId = (int) (Math.random() * (10000 - 1)) + 1;
 
-			boolean created = customerController.register(customer, pwd);
-			if(!created) {
-				message = "Benutzer wurde nicht registriert, etwas schiefgelaufen";
+				if (kindOfCustomer.equals("Privatkunde")) {
+					generatedId = "PRV" + randomId;
+				} else {
+					generatedId = "GEK" + randomId;
+				}
+
+				
+				Customer customer = new Customer(generatedId, name, email);
+				Address address = new Address(street, zipCode, city);
+				customer.getAdresses().add(address);
+
+				boolean created = customerController.register(customer, pwd);
+
+				if (!created) {
+					message = "Benutzer wurde nicht registriert, etwas schiefgelaufen...";
+				}
+				else {
+					HttpSession session = request.getSession();
+					session.setAttribute("customerId", generatedId);
+
+					getServletContext().getRequestDispatcher("/afterRegisterLogin.jsp").forward(request, response);
+				}
 			}
 			
-			getServletContext().getRequestDispatcher("/kaufinformation.jsp").forward(request, response);
+		} 
+		else {
+			message = "Eingabe war nicht vollst&aumlndig, bitte alle Felder ausf&uuml;llen...";
+			request.setAttribute("message", message);
+			getServletContext().getRequestDispatcher("/errorPage.jsp").forward(request, response);
 		}
-		message = "Eingabe war nicht vollst&aumlndig, bitte alle Felder ausf&uuml;llen...";
-		request.setAttribute("message", message);
-		getServletContext().getRequestDispatcher("/errorPage.jsp").forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

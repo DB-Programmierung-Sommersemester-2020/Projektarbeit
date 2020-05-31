@@ -15,7 +15,7 @@
 		<class>bookshop.entities.BookPrise</class>
 		<class>bookshop.entities.BusinessCustomer</class>
 		<class>bookshop.entities.Customer</class>
-		<class>bookshop.entities.CustomerPurchase</class>
+		<class>bookshop.entities.BookSale</class>
 		<class>bookshop.entities.PrivateCustomer</class>
 		<class>bookshop.entities.Publisher</class>
 		<class>bookshop.entities.Password</class>

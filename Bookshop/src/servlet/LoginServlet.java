@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bookshop.controllers.CustomerController;
 import bookshop.helpers.UserInputCheckHelper;
@@ -36,17 +37,28 @@ public class LoginServlet extends HttpServlet {
 		String pwd = request.getParameter("passwd");
 		String message ="";
 		if (!UserInputCheckHelper.attributesOrAttributeEmpty(email,pwd)) {
-			CustomerView customer = viewModelFacade.getCustomerById(email);
+			CustomerView customer = viewModelFacade.getAllCustomers()
+					.stream()
+					.filter(c->c.getEmail()
+							.equals(email))
+					.findFirst().get();
 
 			if (customerController.checkPassword(customer, pwd)) {
+				HttpSession session = request.getSession();
+				session.setAttribute("customerId", customer.getCustomerId());
+				
 				getServletContext().getRequestDispatcher("/kaufinformation.jsp").forward(request, response);
 			}else {
 				message="Login war nicht erfolgreich, Benutzername oder Kennwort ist falsch...";
+				request.setAttribute("message", message );
+				getServletContext().getRequestDispatcher("/errorPage.jsp").forward(request, response);
 			}
+		}else {
+			message="Eingabe war nicht vollst&aumlndig, bitte alle Felder ausf&uuml;llen...";
+			request.setAttribute("message", message );
+			getServletContext().getRequestDispatcher("/errorPage.jsp").forward(request, response);
 		}
-		message="Eingabe war nicht vollst&aumlndig, bitte alle Felder ausf&uuml;llen...";
-		request.setAttribute("message", message );
-		getServletContext().getRequestDispatcher("/errorPage.jsp").forward(request, response);
+		
 
 	}
 

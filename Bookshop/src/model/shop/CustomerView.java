@@ -3,10 +3,6 @@ package model.shop;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-
-import bookshop.entities.CustomerPurchase;
 import bookshop.entities.Password;
 
 public class CustomerView {
@@ -16,14 +12,15 @@ public class CustomerView {
 	private String name;
 
 	private String email;
-	
+
 	private Password password;
-	
-	private Set<CustomerPurchase> purchases = new HashSet<CustomerPurchase>();
+
+	private Set<Buch> purchasedBooks = new HashSet<Buch>();
 
 	public CustomerView() {
-		
+
 	}
+
 	public CustomerView(String customerId, String name, String email) {
 		super();
 		this.customerId = customerId;
@@ -54,15 +51,19 @@ public class CustomerView {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public Set<CustomerPurchase> getPurchases() {
-		return purchases;
+
+	public Set<Buch> getPurchasedBooks() {
+		return purchasedBooks;
 	}
-	
-	public void setPurchases(Set<CustomerPurchase> purchases) {
-		this.purchases = purchases;
+
+	public void setPurchasedBooks(Set<Buch> purchasedBooks) {
+		this.purchasedBooks = purchasedBooks;
 	}
-	
+
+	public boolean addBuch(Buch buch) {
+		return this.purchasedBooks.add(buch);
+	}
+
 	public Password getPassword() {
 		return password;
 	}
@@ -107,7 +108,5 @@ public class CustomerView {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }

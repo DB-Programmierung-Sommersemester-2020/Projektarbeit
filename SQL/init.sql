@@ -47,15 +47,6 @@ CREATE TABLE buchbestand(
     ON DELETE CASCADE
 );
 
-/* Fuer das Abspeichern von Kunde wird aktuell nur Kunde und Privatkunde verwendet 
- die Gedanken beim Entwurf von Kundenhierarchie waren, ersmal Kunde in 
- Kunden - Tabelle abzuspeichern und dannach ausgegangen aus z.B. Primaerschlussel,
- welches bei Privatkunde mit PRV_____ und bei der Geschaeftskunde mit z.B GEK_____ beginnt,
- mit einem Trigger (AFTER INCERT...) aussortieren. Da die Auswahlmoeglichkeit in Registrierungsmaske
- noch nicht gegeben ist, wird es erstmal wie beschrieben gespeichert 
- Primaerschluessel fuer Kunden - Tabelen, wird spaeter in JavaCode generiert.
- Fuer die Sortierung ist ein Trigger schon gegeben siehe unten*/
-
 CREATE TABLE kunde(
     kundenNr VARCHAR(10) NOT NULL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
@@ -85,12 +76,12 @@ CREATE TABLE buchpreis(
 );
 
 CREATE TABLE kundenkauf(
-    kundenNr VARCHAR(10) NOT NULL PRIMARY KEY,
+    kundenNr VARCHAR(10) NOT NULL,
     isbn VARCHAR(13) NOT NULL,
-    datum TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    menge INT NOT NULL CHECK(menge >= 0),
+    datum VARCHAR(50) NOT NULL DEFAULT(CAST(NOW() AS CHAR)),
+    menge INT NOT NULL CHECK(menge >= 0) DEFAULT 1,
     FOREIGN KEY(kundenNr) REFERENCES kunde(kundenNr) ON DELETE CASCADE,
-    FOREIGN KEY(isbn) REFERENCES buchpreis(isbn)
+    FOREIGN KEY(isbn) REFERENCES buch(isbn)
 );
 
 CREATE TABLE kundenadresse(

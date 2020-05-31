@@ -35,7 +35,7 @@ public class BuchdetailServlet extends HttpServlet
    {
       String buchid = request.getParameter("buchid");
       
-      Buch  buch = this.facade.findBuchById( Long.parseLong(buchid) );
+      Buch buch = this.facade.findBuchById(Long.parseLong(buchid));
       request.setAttribute("buch", buch );
       
       getServletContext().getRequestDispatcher("/buchdetail.jsp").forward(request, response);

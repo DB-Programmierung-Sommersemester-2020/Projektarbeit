@@ -6,8 +6,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.crypto.SecretKey;

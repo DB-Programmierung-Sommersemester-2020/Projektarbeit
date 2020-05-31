@@ -6,7 +6,6 @@ import bookshop.entities.Book;
 import bookshop.entities.Customer;
 import bookshop.entities.Password;
 import bookshop.entities.Publisher;
-import bookshop.repositories.implementations.CRUDRepository;
 import bookshop.repositories.services.RepositoriesContainerService;
 
 public class RepositoriesContainer implements RepositoriesContainerService{
@@ -23,7 +22,8 @@ public class RepositoriesContainer implements RepositoriesContainerService{
 			CRUDRepository<Address, Integer> addressRepository,
 			CRUDRepository<Publisher, String> publisherRepository,
 			CRUDRepository<Customer, String> customerRepository,
-			CRUDRepository<Password, String> passwordRepository) {
+			CRUDRepository<Password, String> passwordRepository)
+	{
 		super();
 		this.authorRepository = authorRepository;
 		this.bookRepository = bookRepository;
@@ -62,6 +62,7 @@ public class RepositoriesContainer implements RepositoriesContainerService{
 		return passwordRepository;
 	}
 	
+
 	
 	
 }

@@ -1,5 +1,7 @@
 package bookshop.entities;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -29,9 +32,12 @@ public class Customer {
 	
 	@OneToOne(mappedBy="customerId", cascade=CascadeType.ALL)
 	private Password password;
-
-	@OneToMany(mappedBy = "customer")
-	private Set<CustomerPurchase> purchases = new HashSet<CustomerPurchase>();
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name = "kundenkauf", 
+	joinColumns = @JoinColumn(name = "kundenNr"), 
+	inverseJoinColumns = @JoinColumn(name="isbn"))
+	private Collection<Book> books = new HashSet<Book>();
 	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name = "kundenadresse", 
@@ -39,6 +45,8 @@ public class Customer {
 	inverseJoinColumns = @JoinColumn(name="adressId"))
 	private Set<Address> adresses = new HashSet<Address>();
 	
+	@OneToMany(mappedBy = "customer")
+	private Collection<BookSale> purchases = new ArrayList<BookSale>();
 	public Customer() {
 		
 	}
@@ -56,14 +64,9 @@ public class Customer {
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	
-	public Set<CustomerPurchase> getPurchases() {
-		return purchases;
-	}
-	
-	public void setPurchases(Set<CustomerPurchase> purchases) {
-		this.purchases = purchases;
+	public Collection<Book> getBooks() {
+		return books;
 	}
 	
 	public Set<Address> getAdresses() {
@@ -90,6 +93,10 @@ public class Customer {
 		this.email=email;
 	}
 	
+	
+	public Collection<BookSale> getPurchases() {
+		return purchases;
+	}
 	public String getId() {
 		return customerId;
 	}

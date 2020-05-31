@@ -1,6 +1,8 @@
 package bookshop.entities;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -47,6 +50,15 @@ public class Book {
 	joinColumns = @JoinColumn(name = "isbn"), 
 	inverseJoinColumns = @JoinColumn(name="autorId"))
 	private Set<Author> authors = new HashSet<Author>();
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	@JoinTable(name = "kundenkauf", 
+	joinColumns = @JoinColumn(name = "isbn"), 
+	inverseJoinColumns = @JoinColumn(name="kundenNr"))
+	private Set<Customer> customers = new HashSet<Customer>();
+	
+	@OneToMany(mappedBy = "book", cascade=CascadeType.ALL)
+	private Collection<BookSale> bookSales = new ArrayList<BookSale>();
 
 	public Book() {
 		super();
@@ -158,6 +170,11 @@ public class Book {
 
 	public void setBookPrise(BookPrise bookPrise) {
 		BookPrise = bookPrise;
+	}
+
+	
+	public Collection<BookSale> getBookSales() {
+		return bookSales;
 	}
 
 	@Override
