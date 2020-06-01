@@ -1,4 +1,4 @@
-package servlet;
+package bookshop.servlet;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -9,15 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.shop.Buch;
-import model.shop.ModelFacade;
+import bookshop.viewmodels.Buch;
+import bookshop.viewmodels.ViewModelFacade;
+
+
 
 @WebServlet("/suche")
 public class SuchServlet extends HttpServlet
 {
    private static final long serialVersionUID = 1123L;
    
-   private ModelFacade facade = null;
+   private ViewModelFacade facade = null;
 
    public SuchServlet()
    {
@@ -28,7 +30,7 @@ public class SuchServlet extends HttpServlet
    public void init() throws ServletException
    {
       super.init();
-      this.facade = ModelFacade.getInstance();
+      this.facade = ViewModelFacade.getInstance();
    }
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

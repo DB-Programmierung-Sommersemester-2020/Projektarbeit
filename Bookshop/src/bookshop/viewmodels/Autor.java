@@ -1,4 +1,4 @@
-package model.shop;
+package bookshop.viewmodels;
 
 import java.io.Serializable;
 import java.util.ArrayList;

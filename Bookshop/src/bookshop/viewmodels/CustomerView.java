@@ -1,4 +1,4 @@
-package model.shop;
+package bookshop.viewmodels;
 
 import java.util.HashSet;
 import java.util.Set;

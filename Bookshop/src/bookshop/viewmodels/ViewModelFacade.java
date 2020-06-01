@@ -1,4 +1,4 @@
-package model.shop;
+package bookshop.viewmodels;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,12 +22,12 @@ import bookshop.repositories.facade.RepositoriesFacade;
  * 
  * Die Fassade ist als Singleton implememtiert!
  */
-public class ModelFacade {
+public class ViewModelFacade {
 	private static class InstanceHolder {
-		private static ModelFacade instance = new ModelFacade();
+		private static ViewModelFacade instance = new ViewModelFacade();
 	}
 
-	public static ModelFacade getInstance() {
+	public static ViewModelFacade getInstance() {
 		return InstanceHolder.instance;
 	}
 
@@ -36,9 +36,8 @@ public class ModelFacade {
 	private List<CustomerView> customerContainer = new ArrayList<CustomerView>();
 	private RepositoriesFacade facade = RepositoriesFacade.getInstance();
 
-	private ModelFacade() {
+	private ViewModelFacade() {
 		super();
-		// this.initModel();
 		this.mapEmtitiesAndViewModels();
 
 	}

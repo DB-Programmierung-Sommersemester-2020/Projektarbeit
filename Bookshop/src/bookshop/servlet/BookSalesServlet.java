@@ -1,7 +1,6 @@
-package servlet;
+package bookshop.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -13,11 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bookshop.entities.Book;
-import bookshop.entities.BookSale;
 import bookshop.entities.Customer;
 import bookshop.repositories.facade.RepositoriesFacade;
-import model.shop.Buch;
-import model.shop.Warenkorb;
+import bookshop.viewmodels.*;
 
 @WebServlet("/purchase")
 public class BookSalesServlet extends HttpServlet {

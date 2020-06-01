@@ -1,4 +1,4 @@
-package servlet;
+package bookshop.servlet;
 
 import java.io.IOException;
 
@@ -9,16 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.shop.Buch;
-import model.shop.ModelFacade;
-import model.shop.Warenkorb;
+import bookshop.viewmodels.Buch;
+import bookshop.viewmodels.ViewModelFacade;
+import bookshop.viewmodels.Warenkorb;
+
+
 
 @WebServlet("/warenkorb")
 public class InWarenkorbServlet extends HttpServlet
 {
    private static final long serialVersionUID = 1124L;
 
-   private ModelFacade facade = null;
+   private ViewModelFacade facade = null;
 
    public InWarenkorbServlet()
    {
@@ -29,7 +31,7 @@ public class InWarenkorbServlet extends HttpServlet
    public void init() throws ServletException
    {
       super.init();
-      this.facade = ModelFacade.getInstance();
+      this.facade = ViewModelFacade.getInstance();
    }
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

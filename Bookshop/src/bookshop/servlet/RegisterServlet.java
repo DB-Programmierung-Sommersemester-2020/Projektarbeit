@@ -1,4 +1,4 @@
-package servlet;
+package bookshop.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

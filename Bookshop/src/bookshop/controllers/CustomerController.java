@@ -14,8 +14,8 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import bookshop.repositories.facade.RepositoriesFacade;
-import model.shop.CustomerView;
-import model.shop.ModelFacade;
+import bookshop.viewmodels.CustomerView;
+import bookshop.viewmodels.ViewModelFacade;
 import bookshop.entities.Customer;
 import bookshop.entities.Password;
 
@@ -23,7 +23,7 @@ import bookshop.entities.Password;
 public class CustomerController {
 	private static CustomerController instance = null;
 	private RepositoriesFacade repositoriesFacade = RepositoriesFacade.getInstance();
-	private ModelFacade viewModelFacade = ModelFacade.getInstance();
+	private ViewModelFacade viewModelFacade = ViewModelFacade.getInstance();
 
 	public static CustomerController getInstance() {
 		return (instance==null) ? new CustomerController() : instance;
