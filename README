@@ -1,0 +1,8 @@
+Bei der Ausarbeitung der Projektaufgaben wurde für beide Projekte
+jdk 11.0.7 LTS verwendet und für das WebProjekt "Bookshop" das 
+Tomcat-Server version 9.0, daher soll die default-jre Version in Eclipse für Tomcatserver Einstellungen ugestellt werden.
+
+Als Datenbank ist das "dbContainer" (Docker - Container von Präsenzphase)
+verwendet. die Logindaten blieben unverändert und in beide Prjekte integriert.
+
+github-link zum Projek: https://github.com/DB-Programmierung-Sommersemester-2020/Projektarbeit.git
