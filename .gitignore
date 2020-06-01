@@ -2,3 +2,5 @@
 /Bookshop/build/
 /Bookshop/target/
 /RemoteSystemsTempFiles
+/bookshop_dataseed/src/test
+/bookshop_dataseed/target
