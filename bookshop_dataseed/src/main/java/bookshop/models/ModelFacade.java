@@ -138,37 +138,7 @@ public class ModelFacade {
         BookAuthor aSD = new BookAuthor("9780135974445", 3);
         BookAuthor cC2 = new BookAuthor("9780137081073", 3);
         BookAuthor cPJ = new BookAuthor("9780201310092", 4);
-        BookAuthor spSpublic static ModelFacade getInstance(){
-            return (instance == null) ? new ModelFacade() : instance;
-        }
-    
-        public Set<Address> getAllAddresses(){
-            return this.addresses;
-        }
-        
-        public Set<Author> getAllAuthors(){
-            return this.authors;
-        }
-        
-        public Set<Book> getAllBooks(){
-            return this.books;
-        }
-        
-        public Set<Publisher> getAllPublishers(){
-            return this.publishers;
-        }
-    
-        public Set<BookAmount> getAllBookAmounts(){
-            return this.amounts;
-        }
-        
-        public Set<BookPrise> getAllBookPrises(){
-            return this.prises;
-        }
-    
-        public List<BookAuthor> getAllBookAuthors(){
-            return this.bookAuthors;
-        } = new BookAuthor("9783446218437", 2);
+        BookAuthor spS = new BookAuthor("9783446218437", 2);
         BookAuthor eSA = new BookAuthor("9783446427280", 1);
         BookAuthor mSA = new BookAuthor("9783898642927", 2);
         BookAuthor soa = new BookAuthor("9783898644372", 1);

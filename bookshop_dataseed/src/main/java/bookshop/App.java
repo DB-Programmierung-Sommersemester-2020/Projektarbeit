@@ -1,13 +1,13 @@
 package bookshop;
 
-/**
- * Hello world!
- *
- */
+import bookshop.repository.BookshopRepository;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        BookshopRepository bookshopRepository = BookshopRepository.getInstance();
+        bookshopRepository.createAuthors();
+        System.out.println("Authors created");
     }
 }

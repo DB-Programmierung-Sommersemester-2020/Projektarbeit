@@ -42,7 +42,7 @@ public class BookAmount {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        BookAmaount other = (BookAmaount) obj;
+        BookAmount other = (BookAmount) obj;
         if (amount != other.amount)
             return false;
         if (isbn == null) {
