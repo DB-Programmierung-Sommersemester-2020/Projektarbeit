@@ -11,6 +11,7 @@ CREATE TABLE adresse (
     plz VARCHAR(5) NOT NULL,
     stadt VARCHAR(50) NOT NULL
 );
+ALTER TABLE adresse AUTO_INCREMENT=6; --5 Adressen werden beim seeding eingetragen
 
 CREATE TABLE verlag(
     name VARCHAR(50) NOT NULL PRIMARY KEY,
@@ -20,10 +21,10 @@ CREATE TABLE verlag(
 
 CREATE TABLE buch (
     isbn VARCHAR(13) NOT NULL PRIMARY KEY,
-    titel VARCHAR(50) NOT NULL,
+    titel VARCHAR(150) NOT NULL,
     verlag VARCHAR(50) NOT NULL,
     bild LONGBLOB,
-    bild_pfad VARCHAR(1024),-- gegebenfalls Pfad zum Bild
+    bild_pfad VARCHAR(1024),
     FOREIGN KEY(verlag) REFERENCES verlag(name)
 );
 
@@ -32,6 +33,7 @@ CREATE TABLE autor (
     vorname VARCHAR(25) NOT NULL,
     nachname VARCHAR(25) NOT NULL
 );
+ALTER TABLE autor AUTO_INCREMENT=13; --12 Autors werden beim seeding eingetragen
 
 CREATE TABLE buchautor(
     isbn VARCHAR(13) NOT NULL,
