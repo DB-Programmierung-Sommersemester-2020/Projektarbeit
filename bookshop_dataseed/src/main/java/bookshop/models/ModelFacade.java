@@ -26,19 +26,19 @@ public class ModelFacade {
     }
 
     private void fillAddresses() {
-        Address hanserAddress = new Address("Kolbergerstraße 22", "81679", "München");
+        Address hanserAddress = new Address(1,"Kolbergerstraße 22", "81679", "München");
         addresses.add(hanserAddress);
 
-        Address dpunktAddress = new Address("Wieblinger Weg 17", "69123", "Heidelberg");
+        Address dpunktAddress = new Address(2,"Wieblinger Weg 17", "69123", "Heidelberg");
         addresses.add(dpunktAddress);
 
-        Address prenticeHallAddress = new Address("Upper Saddle River", "07097", "New Jersey");
+        Address prenticeHallAddress = new Address(3,"Upper Saddle River", "07097", "New Jersey");
         addresses.add(prenticeHallAddress);
 
-        Address addisonWeslyAddress = new Address("St.-Martin-Str. 82", "81541", "München");
+        Address addisonWeslyAddress = new Address(4,"St.-Martin-Str. 82", "81541", "München");
         addresses.add(addisonWeslyAddress);
 
-        Address morganKaufmannAddress = new Address("340 Pine Street", "6th Floor", "94104", "San Francisco");
+        Address morganKaufmannAddress = new Address(5,"340 Pine Street", "6th Floor", "94104", "San Francisco");
         addresses.add(morganKaufmannAddress);
     }
 
@@ -57,18 +57,18 @@ public class ModelFacade {
     }
 
     private void fillAuthors() {
-        Author starke = new Author("Gernot", "Starke");
-        Author siedersleben = new Author("Johannes", "Siedersleben");
-        Author martin = new Author("Robert", "Martin");
-        Author lea = new Author("Doug", "Lea");
-        Author mcCool = new Author("Michael", "McCool");
-        Author robinson = new Author("Arch", "Robinson");
-        Author reinders = new Author("James", "Reinders");
-        Author jeffers = new Author("Jim", "Jeffers");
-        Author tanenbaum = new Author("Andrew", "Tanenbaum");
-        Author bos = new Author("Herbert", "Bos");
-        Author wetherall = new Author("David", "Wetherall");
-        Author tilkov = new Author("Stefan", "Tilkov");
+        Author starke = new Author(1,"Gernot", "Starke");
+        Author siedersleben = new Author(2,"Johannes", "Siedersleben");
+        Author martin = new Author(3,"Robert", "Martin");
+        Author lea = new Author(4,"Doug", "Lea");
+        Author mcCool = new Author(5,"Michael", "McCool");
+        Author robinson = new Author(6,"Arch", "Robinson");
+        Author reinders = new Author(7,"James", "Reinders");
+        Author jeffers = new Author(8,"Jim", "Jeffers");
+        Author tanenbaum = new Author(9,"Andrew", "Tanenbaum");
+        Author bos = new Author(10,"Herbert", "Bos");
+        Author wetherall = new Author(11,"David", "Wetherall");
+        Author tilkov = new Author(12,"Stefan", "Tilkov");
 
         authors.add(starke);
         authors.add(siedersleben);

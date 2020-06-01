@@ -23,7 +23,22 @@ public class Address {
         this.city = city;
     }
 
-    public int getId() {
+    public Address(int id, String street, String zipCode, String city) {
+        this.id = id;
+        this.street = street;
+        this.zipCode = zipCode;
+        this.city = city;
+    }
+    
+    public Address(int id, String street,String suffix, String zipCode, String city) {
+        this.id = id;
+        this.street = street;
+        this.suffix = suffix;
+        this.zipCode = zipCode;
+        this.city = city;
+	}
+
+	public int getId() {
         return id;
     }
 

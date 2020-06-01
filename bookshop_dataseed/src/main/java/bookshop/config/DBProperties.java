@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class DBProperties {
 
-    private String propertiesPath="./../../properties/db.properties";
+    private String propertiesPath="./../../properties/database.properties";
 
     private void initProperties(String path) {
         propertiesPath = path;
