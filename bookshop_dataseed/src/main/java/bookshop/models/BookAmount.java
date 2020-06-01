@@ -1,10 +1,10 @@
 package bookshop.models;
 
-public class BookAmaount {
+public class BookAmount {
     private String isbn;
     private int amount;
 
-    public BookAmaount(String isbn, int amount) {
+    public BookAmount(String isbn, int amount) {
         this.isbn = isbn;
         this.amount = amount;
     }
