@@ -15,7 +15,7 @@ public class ModelFacade {
     private Set<BookPrise> prises = new HashSet<BookPrise>();
     private List<BookAuthor> bookAuthors = new ArrayList<BookAuthor>();
 
-    public ModelFacade() {
+    private ModelFacade() {
         fillAddresses();
         fillAuthors();
         fillBooks();
